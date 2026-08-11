@@ -1,0 +1,1270 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sua obra está estourando o orçamento? Calculadora gratuita | Capixaba Shop</title>
+<meta name="description" content="Marque o que já está pronto na obra e descubra quanto ela vai custar no final. Sem cadastro, sem conta para fazer. Serve para o dono, o engenheiro, o mestre e o pedreiro.">
+<link rel="canonical" href="https://felipecapixaba.github.io/calculadora-obra/">
+<meta name="theme-color" content="#0b2545">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Calculadora de Obra">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icone.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icone-192.png">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Capixaba Shop">
+<meta property="og:title" content="Sua obra está estourando o orçamento?">
+<meta property="og:description" content="Marque o que já está pronto e veja quanto a obra vai custar no final. Sem cadastro.">
+<meta property="og:url" content="https://felipecapixaba.github.io/calculadora-obra/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sua obra está estourando o orçamento?">
+<meta name="twitter:description" content="Marque o que já está pronto e veja quanto a obra vai custar no final. Sem cadastro.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Calculadora de estouro de orçamento de obra",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "inLanguage": "pt-BR",
+  "description": "Projeta o custo final de uma obra a partir das etapas já concluídas, do orçamento e do quanto já foi gasto, pelo método de valor agregado.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL" },
+  "publisher": { "@type": "Organization", "name": "Capixaba Shop", "areaServed": "Espírito Santo, Brasil" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Como saber quanto da obra já está pronta?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Marque etapa por etapa o que já foi feito: fundação, estrutura, paredes, telhado, instalações, reboco, portas e janelas, piso, pintura. Cada etapa pesa uma fatia da obra, e a soma do que está pronto dá o avanço." }
+    },
+    {
+      "@type": "Question",
+      "name": "Como saber se a obra vai estourar o orçamento?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Compare o quanto da obra já foi executado com o quanto já foi gasto. Se você fez 40% e gastou 52% do orçamento, cada parte está custando mais do que o previsto, e a tendência se mantém até o fim se nada mudar." }
+    }
+  ]
+}
+</script>
+
+<style>
+:root {
+  color-scheme: light;
+  --page:      #f5f7f9;
+  --surface:   #ffffff;
+  --surface-2: #eef1f5;
+  --ink:       #0b2545;
+  --ink-2:     #46536b;
+  --muted:     #6b7280;
+  --line:      #dae0e8;
+  --line-forte:#b9c3d1;
+  --brand:     #0b2545;
+  --oferta-bg:  #0b2545;
+  --oferta-ink: #ffffff;
+  --accent:    #c2255c;
+  --on-accent: #ffffff;
+  --focus:     #c2255c;
+  --serie:     #2a78d6;
+  --serie-fraca:#cde2fb;
+  --good:      #0ca30c;
+  --critical:  #d03b3b;
+  --good-text: #006300;
+  --bad-text:  #c32e2e;
+  --shadow:    0 1px 2px rgba(11,37,69,.06), 0 2px 10px rgba(11,37,69,.05);
+  --radius:    8px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page:      #071120;
+    --surface:   #0e1d33;
+    --surface-2: #142743;
+    --ink:       #f4f7fb;
+    --ink-2:     #bcc7d6;
+    --muted:     #93a0b2;
+    --line:      #1e3050;
+    --line-forte:#31456b;
+    --brand:     #f4f7fb;
+    --oferta-bg:  #14305c;
+    --oferta-ink: #f4f7fb;
+    --accent:    #f07ba4;
+    --on-accent: #250715;
+    --focus:     #f07ba4;
+    --serie:     #3987e5;
+    --serie-fraca:#18325c;
+    --good-text: #4cc94c;
+    --bad-text:  #f08a8a;
+    --shadow:    0 1px 2px rgba(0,0,0,.35), 0 2px 10px rgba(0,0,0,.25);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page:      #071120;
+  --surface:   #0e1d33;
+  --surface-2: #142743;
+  --ink:       #f4f7fb;
+  --ink-2:     #bcc7d6;
+  --muted:     #93a0b2;
+  --line:      #1e3050;
+  --line-forte:#31456b;
+  --brand:     #f4f7fb;
+  --oferta-bg:  #14305c;
+  --oferta-ink: #f4f7fb;
+  --accent:    #f07ba4;
+  --on-accent: #250715;
+  --focus:     #f07ba4;
+  --serie:     #3987e5;
+  --serie-fraca:#18325c;
+  --good-text: #4cc94c;
+  --bad-text:  #f08a8a;
+  --shadow:    0 1px 2px rgba(0,0,0,.35), 0 2px 10px rgba(0,0,0,.25);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+/* Um display explícito numa classe vence o [hidden] do navegador. Sem isto,
+   esconder um bloco flex/grid via JS não faz nada. */
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--page); color: var(--ink);
+  font: 400 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+h1, h2, h3 { margin: 0; line-height: 1.22; font-weight: 600; letter-spacing: -.015em; text-wrap: balance; }
+h1 { font-size: clamp(1.6rem, 1.2rem + 2vw, 2.2rem); }
+h2 { font-size: clamp(1.2rem, 1.05rem + .7vw, 1.5rem); }
+h3 { font-size: 1rem; }
+p { margin: 0; }
+a { color: inherit; }
+
+:where(a, button, input, [tabindex]):focus-visible {
+  outline: 3px solid var(--focus); outline-offset: 2px; border-radius: 6px;
+}
+.skip {
+  position: absolute; left: 8px; top: -60px; z-index: 100;
+  background: var(--accent); color: var(--on-accent);
+  padding: 12px 18px; border-radius: var(--radius); font-weight: 600; text-decoration: none;
+}
+.skip:focus { top: 8px; }
+.wrap { width: min(680px, 100% - 1.75rem); margin-inline: auto; }
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+.site-header { background: var(--surface); border-bottom: 1px solid var(--line); }
+.header-bar { display: flex; align-items: center; gap: 1rem; min-height: 60px; }
+.brand {
+  display: inline-flex; align-items: center; gap: .5rem; min-width: 0;
+  font-weight: 700; font-size: .95rem; color: var(--brand); text-decoration: none;
+}
+.btn-tema {
+  margin-left: auto; width: 48px; height: 48px; flex: none;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--surface); color: var(--ink); cursor: pointer;
+}
+.btn-tema:hover { background: var(--surface-2); }
+
+main { padding-block: 1.5rem 3rem; }
+
+/* Passos */
+.trilha { display: flex; align-items: center; gap: .6rem; margin-bottom: 1.25rem; }
+.trilha[hidden] { display: none; }
+.trilha .texto { font-size: .875rem; color: var(--ink-2); font-weight: 600; white-space: nowrap; }
+.trilha .track {
+  flex: 1; height: 8px; border-radius: 4px; background: var(--serie-fraca); overflow: hidden;
+}
+.trilha .track i { display: block; height: 100%; background: var(--serie); border-radius: 4px; }
+
+.passo[hidden] { display: none; }
+/* Recebe foco programático para o leitor de tela anunciar o resultado;
+   não é um controle, então não mostra anel de foco. */
+#p-resultado:focus, #p-resultado:focus-visible { outline: none; }
+.passo > h2 { margin-bottom: .35rem; }
+.passo > .ajuda { color: var(--ink-2); margin-bottom: 1.1rem; font-size: 1rem; }
+
+.card {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.15rem;
+}
+
+/* Botões */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  min-height: 54px; padding: 0 1.35rem;
+  border: 1px solid var(--line-forte); border-radius: var(--radius);
+  background: var(--surface); color: var(--ink);
+  font: inherit; font-weight: 600; font-size: 1rem; cursor: pointer; text-decoration: none;
+}
+.btn:hover { background: var(--surface-2); }
+.btn-primary { background: var(--accent); color: var(--on-accent); border-color: transparent; }
+.btn-primary:hover { background: var(--accent); filter: brightness(.94); }
+.btn-largo { width: 100%; }
+.navegacao { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.25rem; }
+.navegacao .btn-primary { flex: 1 1 12rem; }
+
+/* Escolha de perfil */
+.perfis { display: grid; gap: .75rem; grid-template-columns: 1fr; }
+.perfil {
+  display: flex; align-items: center; gap: .9rem; text-align: left;
+  width: 100%; min-height: 78px; padding: .9rem 1rem;
+  background: var(--surface); border: 1px solid var(--line-forte);
+  border-radius: var(--radius); box-shadow: var(--shadow);
+  color: var(--ink); font: inherit; cursor: pointer;
+}
+.perfil:hover { border-color: var(--serie); background: var(--surface-2); }
+.perfil .ico {
+  flex: none; width: 46px; height: 46px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--serie-fraca); color: var(--serie);
+}
+.perfil .txt { min-width: 0; }
+.perfil .titulo { display: block; font-weight: 600; font-size: 1.0625rem; }
+.perfil .desc { display: block; color: var(--ink-2); font-size: .9375rem; line-height: 1.4; }
+
+/* Alternador de modo */
+.modos { display: flex; gap: .5rem; margin-bottom: 1rem; }
+.modos button {
+  flex: 1; min-height: 50px; padding: 0 .75rem;
+  border: 1px solid var(--line-forte); border-radius: var(--radius);
+  background: var(--surface); color: var(--ink-2);
+  font: inherit; font-size: .9375rem; font-weight: 600; cursor: pointer;
+}
+.modos button[aria-pressed="true"] {
+  background: var(--serie-fraca); color: var(--ink);
+  border-color: var(--serie);
+}
+
+/* Etapas */
+.etapas { display: grid; gap: .6rem; }
+.etapa {
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--surface); padding: .75rem .85rem;
+}
+.etapa.feita { border-color: var(--good); }
+.etapa-topo {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: .75rem; margin-bottom: .55rem;
+}
+.etapa-nome { font-weight: 600; font-size: 1rem; }
+.etapa-peso { font-size: .8125rem; color: var(--muted); white-space: nowrap; }
+.opcoes { display: grid; grid-template-columns: repeat(3, 1fr); gap: .4rem; }
+.opcoes input { position: absolute; opacity: 0; width: 0; height: 0; }
+.opcoes label {
+  display: flex; align-items: center; justify-content: center; gap: .35rem;
+  min-height: 48px; padding: 0 .4rem; text-align: center;
+  border: 1px solid var(--line-forte); border-radius: 6px;
+  background: var(--surface); color: var(--ink-2);
+  font-size: .875rem; font-weight: 600; cursor: pointer; line-height: 1.15;
+}
+.opcoes label:hover { background: var(--surface-2); }
+.opcoes input:checked + label {
+  background: var(--serie); border-color: var(--serie); color: #fff;
+}
+.opcoes input:focus-visible + label { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+.resumo-avanco {
+  position: sticky; bottom: 0; z-index: 5;
+  margin-top: 1rem; padding: .85rem 1rem;
+  background: var(--surface); border: 1px solid var(--line-forte);
+  border-radius: var(--radius); box-shadow: 0 -2px 14px rgba(11,37,69,.10);
+}
+.resumo-avanco .linha { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+.resumo-avanco .rot { font-size: .9375rem; color: var(--ink-2); }
+.resumo-avanco .val { font-size: 1.75rem; font-weight: 600; letter-spacing: -.02em; }
+.resumo-avanco .track {
+  height: 10px; border-radius: 5px; background: var(--serie-fraca);
+  margin-top: .5rem; overflow: hidden;
+}
+.resumo-avanco .track i { display: block; height: 100%; background: var(--serie); border-radius: 5px; }
+
+/* Campos */
+.campo { margin-bottom: 1.25rem; }
+.campo label { display: block; font-weight: 600; font-size: 1.0625rem; margin-bottom: .25rem; }
+.campo .dica { display: block; color: var(--ink-2); font-size: .9375rem; margin-bottom: .5rem; }
+.entrada { position: relative; display: flex; align-items: center; }
+.entrada .prefixo, .entrada .sufixo { position: absolute; color: var(--ink-2); font-size: 1.0625rem; pointer-events: none; }
+.entrada .prefixo { left: .85rem; }
+.entrada .sufixo { right: .85rem; }
+input[type="text"] {
+  width: 100%; min-height: 56px; padding: 0 .85rem;
+  border: 1px solid var(--line-forte); border-radius: var(--radius);
+  background: var(--surface); color: var(--ink);
+  font: inherit; font-size: 1.25rem; font-variant-numeric: tabular-nums;
+}
+input.com-prefixo { padding-left: 2.7rem; }
+input.com-sufixo  { padding-right: 4.6rem; }
+input[aria-invalid="true"] { border-color: var(--critical); border-width: 2px; }
+.erro { display: block; color: var(--bad-text); font-size: .9375rem; margin-top: .35rem; font-weight: 600; }
+.erro:empty { display: none; }
+.dupla { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+
+fieldset { border: 0; padding: 0; margin: 0 0 1.25rem; }
+legend { padding: 0; font-weight: 600; font-size: 1.0625rem; }
+legend + .dica { display: block; color: var(--ink-2); font-size: .9375rem; margin-bottom: .6rem; }
+
+/* Resultado */
+.veredito .rotulo { color: var(--ink-2); font-size: 1rem; }
+.veredito .numero {
+  display: block; margin: .15rem 0 .4rem;
+  font-size: clamp(2.6rem, 1.7rem + 4.2vw, 3.6rem);
+  font-weight: 600; letter-spacing: -.035em; line-height: 1.02;
+}
+.veredito.ruim .numero { color: var(--bad-text); }
+.veredito.bom  .numero { color: var(--good-text); }
+.veredito.neutro .numero { color: var(--ink); }
+.veredito .frase { color: var(--ink-2); }
+
+.barras { margin: 1.4rem 0 .5rem; }
+.barra-linha { margin-bottom: .9rem; }
+.barra-topo { display: flex; justify-content: space-between; gap: 1rem; font-size: .9375rem; color: var(--ink-2); margin-bottom: .3rem; }
+.barra-topo b { font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
+.barra { display: flex; gap: 2px; height: 24px; background: var(--surface); }
+.barra span { display: block; height: 100%; }
+.barra span:first-child { border-radius: 4px 0 0 4px; }
+.barra span:last-child  { border-radius: 0 4px 4px 0; }
+.seg-orcado    { background: var(--serie); }
+.seg-excedente { background: var(--critical); }
+.legenda { display: flex; flex-wrap: wrap; gap: .4rem 1.25rem; margin: 0; padding: 0; }
+.legenda > div { display: flex; align-items: center; gap: .45rem; font-size: .875rem; color: var(--ink-2); }
+.legenda svg { flex: none; }
+
+.tiles { display: grid; gap: .75rem; grid-template-columns: 1fr; margin-top: 1.4rem; }
+.tile { background: var(--surface-2); border-radius: var(--radius); padding: .85rem 1rem; }
+.tile .rot { font-size: .9375rem; color: var(--ink-2); margin-bottom: .1rem; }
+.tile .val { font-size: 1.4rem; font-weight: 600; letter-spacing: -.02em; }
+.tile .obs { font-size: .875rem; color: var(--muted); margin-top: .1rem; }
+
+.lista-etapas { list-style: none; margin: 1.25rem 0 0; padding: 0; display: grid; gap: .35rem; }
+.lista-etapas li { display: flex; align-items: center; gap: .55rem; font-size: .9375rem; }
+.lista-etapas .nome { flex: 1; min-width: 0; }
+.lista-etapas .estado { color: var(--ink-2); font-size: .875rem; white-space: nowrap; }
+
+details.conta { margin-top: 1.25rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+details.conta summary { cursor: pointer; font-weight: 600; min-height: 44px; display: flex; align-items: center; }
+details.conta table { width: 100%; border-collapse: collapse; margin-top: .5rem; font-size: .9375rem; }
+details.conta th, details.conta td { padding: .5rem .4rem; text-align: left; border-bottom: 1px solid var(--line); }
+details.conta th { font-weight: 400; color: var(--ink-2); }
+details.conta td { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+details.conta tr:last-child :is(th, td) { border-bottom: 0; }
+details.conta p.nota { margin-top: .75rem; color: var(--ink-2); font-size: .9375rem; }
+
+.acoes-resultado { display: grid; gap: .7rem; margin-top: 1.25rem; }
+.btn-zap { background: #1f8f4e; color: #fff; border-color: transparent; }
+.btn-zap:hover { background: #1a7a43; }
+
+/* Oferta */
+.oferta { background: var(--oferta-bg); color: var(--oferta-ink); border-color: transparent; }
+.oferta h2 { color: var(--oferta-ink); }
+.oferta p { color: var(--oferta-ink); opacity: .9; margin-top: .5rem; }
+.oferta .btn { margin-top: 1rem; background: #fff; color: #0b2545; border-color: transparent; }
+.oferta .btn:hover { background: #e9edf3; }
+.captura { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1rem; }
+.captura input { flex: 1 1 15rem; background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.34); color: var(--oferta-ink); font-size: 1.0625rem; }
+.captura input::placeholder { color: rgba(255,255,255,.62); }
+.captura .btn { flex: 0 0 auto; margin-top: 0; }
+.captura-msg { font-size: .9375rem; margin-top: .6rem; min-height: 1.3em; color: var(--oferta-ink); opacity: .82; }
+.acoes-oferta { display: grid; gap: .7rem; margin-top: 1rem; }
+.oferta .acoes-oferta .btn { margin-top: 0; }
+.oferta .acoes-oferta .btn-zap { background: #1f8f4e; color: #fff; }
+.oferta .acoes-oferta .btn-zap:hover { background: #1a7a43; }
+
+.aviso {
+  display: flex; gap: .6rem; align-items: flex-start; margin-top: 1.5rem;
+  font-size: .875rem; color: var(--ink-2);
+  background: var(--surface-2); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: .8rem .95rem;
+}
+.aviso svg { flex: none; margin-top: .25rem; }
+
+.site-footer { border-top: 1px solid var(--line); background: var(--surface); padding-block: 1.5rem; font-size: .875rem; color: var(--ink-2); }
+.site-footer p + p { margin-top: .4rem; }
+
+@media (min-width: 560px) {
+  .dupla { grid-template-columns: 1fr 1fr; }
+  .tiles { grid-template-columns: repeat(3, 1fr); }
+  .acoes-resultado { grid-template-columns: repeat(3, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print {
+  .btn, .btn-tema, .oferta, .trilha, .navegacao, .acoes-resultado, .site-header { display: none !important; }
+  body { background: #fff; font-size: 12pt; }
+  .card { box-shadow: none; border-color: #999; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#conteudo">Pular para a calculadora</a>
+
+<header class="site-header">
+  <div class="wrap header-bar">
+    <a class="brand" href="https://capixabashop.com.br">
+      <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <circle cx="12" cy="12" r="10.5" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M7 14.5 11 9.5l3 3 3.5-5" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Capixaba Shop
+    </a>
+    <button class="btn-tema" type="button" id="tema" aria-label="Alternar tema claro e escuro">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+        <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<main class="wrap" id="conteudo">
+
+  <div class="trilha" id="trilha" hidden>
+    <span class="texto" id="trilha-texto"></span>
+    <span class="track"><i id="trilha-barra" style="width:0%"></i></span>
+  </div>
+
+  <!-- ============ PASSO 1 — QUEM É VOCÊ ============ -->
+  <section class="passo" id="p-perfil" aria-labelledby="h-perfil">
+    <h1 id="h-perfil">Sua obra está estourando o orçamento?</h1>
+    <p class="ajuda" style="margin-top:.6rem">
+      Você marca o que já está pronto e responde duas perguntas. A conta sai na hora,
+      de graça, sem criar conta e sem instalar nada.
+    </p>
+
+    <h2 style="margin-top:1.75rem">Primeiro: quem é você na obra?</h2>
+    <p class="ajuda">Isso muda só as perguntas que eu faço. Escolha e siga.</p>
+
+    <div class="perfis">
+      <button class="perfil" type="button" data-perfil="dono">
+        <span class="ico" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-5h6v5"/></svg>
+        </span>
+        <span class="txt">
+          <span class="titulo">Sou o dono da obra</span>
+          <span class="desc">Construtora, incorporadora ou dono do terreno. Quero saber quanto vou gastar no final.</span>
+        </span>
+      </button>
+
+      <button class="perfil" type="button" data-perfil="engenheiro">
+        <span class="ico" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18M6 20V9l6-5 6 5v11M10 20v-4h4v4"/><path d="M3 9h18"/></svg>
+        </span>
+        <span class="txt">
+          <span class="titulo">Sou engenheiro ou arquiteto</span>
+          <span class="desc">Quero a projeção de custo e de prazo, com os índices e a memória de cálculo.</span>
+        </span>
+      </button>
+
+      <button class="perfil" type="button" data-perfil="mestre">
+        <span class="ico" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a8 8 0 0 1 16 0"/><path d="M2 14h20"/><path d="M12 6V3"/></svg>
+        </span>
+        <span class="txt">
+          <span class="titulo">Sou mestre de obras</span>
+          <span class="desc">Quero registrar o que já foi feito e mandar o resumo pro dono no WhatsApp.</span>
+        </span>
+      </button>
+
+      <button class="perfil" type="button" data-perfil="pedreiro">
+        <span class="ico" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="8" height="5" rx="1"/><rect x="13" y="9" width="8" height="5" rx="1"/><rect x="8" y="15" width="8" height="5" rx="1"/></svg>
+        </span>
+        <span class="txt">
+          <span class="titulo">Trabalho na obra</span>
+          <span class="desc">Pedreiro, encarregado ou ajudante. Quero mostrar o que já ficou pronto.</span>
+        </span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============ PASSO 2 — O QUE JÁ ESTÁ PRONTO ============ -->
+  <section class="passo" id="p-avanco" hidden aria-labelledby="h-avanco">
+    <h2 id="h-avanco">O que já está pronto na obra?</h2>
+    <p class="ajuda" id="ajuda-avanco">
+      Vá marcando etapa por etapa. Se uma etapa está pela metade, marque
+      <strong>Na metade</strong> mesmo — não precisa ser exato.
+    </p>
+
+    <div class="modos" role="group" aria-label="Como informar o avanço da obra">
+      <button type="button" id="modo-etapas" aria-pressed="true">Marcar por etapa</button>
+      <button type="button" id="modo-pct" aria-pressed="false">Já sei a porcentagem</button>
+    </div>
+
+    <div id="bloco-etapas">
+      <div class="etapas" id="etapas"></div>
+    </div>
+
+    <div id="bloco-pct" hidden>
+      <div class="card">
+        <div class="campo" style="margin-bottom:0">
+          <label for="pct-direto">Quanto da obra já está pronta</label>
+          <span class="dica">Avanço da construção, não do dinheiro gasto.</span>
+          <div class="entrada">
+            <input type="text" id="pct-direto" class="com-sufixo" inputmode="numeric"
+                   autocomplete="off" placeholder="40" aria-describedby="e-pct-direto">
+            <span class="sufixo" aria-hidden="true">%</span>
+          </div>
+          <span class="erro" id="e-pct-direto" role="alert"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="resumo-avanco" id="resumo-avanco">
+      <div class="linha">
+        <span class="rot">A obra está</span>
+        <span class="val" id="resumo-val">0% pronta</span>
+      </div>
+      <span class="track"><i id="resumo-barra" style="width:0%"></i></span>
+    </div>
+
+    <div class="navegacao">
+      <button class="btn" type="button" data-voltar="p-perfil">Voltar</button>
+      <button class="btn btn-primary" type="button" id="avanco-continuar">Continuar</button>
+    </div>
+  </section>
+
+  <!-- ============ PASSO 3 — OS NÚMEROS ============ -->
+  <section class="passo" id="p-numeros" hidden aria-labelledby="h-numeros">
+    <h2 id="h-numeros">Agora os números do dinheiro</h2>
+    <p class="ajuda">
+      Só dois valores. Pode arredondar — não precisa dos centavos.
+    </p>
+
+    <div class="card">
+      <div class="campo">
+        <label for="orcamento">Quanto foi combinado que a obra ia custar?</label>
+        <span class="dica" id="d-orcamento">O valor fechado no começo, sem os aditivos.</span>
+        <div class="entrada">
+          <span class="prefixo" aria-hidden="true">R$</span>
+          <input type="text" id="orcamento" class="com-prefixo" inputmode="numeric"
+                 autocomplete="off" placeholder="500.000" aria-describedby="d-orcamento e-orcamento">
+        </div>
+        <span class="erro" id="e-orcamento" role="alert"></span>
+      </div>
+
+      <div class="campo" style="margin-bottom:0">
+        <label for="gasto">Quanto já saiu do bolso até hoje?</label>
+        <span class="dica" id="d-gasto">Material, mão de obra, tudo que já foi pago pela obra.</span>
+        <div class="entrada">
+          <span class="prefixo" aria-hidden="true">R$</span>
+          <input type="text" id="gasto" class="com-prefixo" inputmode="numeric"
+                 autocomplete="off" placeholder="260.000" aria-describedby="d-gasto e-gasto">
+        </div>
+        <span class="erro" id="e-gasto" role="alert"></span>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:1rem">
+      <fieldset style="margin-bottom:0">
+        <legend>Prazo da obra</legend>
+        <span class="dica">Opcional. Preencha se quiser saber também se vai atrasar.</span>
+        <div class="dupla">
+          <div class="campo" style="margin-bottom:0">
+            <label for="prazo">Prazo combinado</label>
+            <div class="entrada">
+              <input type="text" id="prazo" class="com-sufixo" inputmode="numeric"
+                     autocomplete="off" placeholder="12" aria-describedby="e-prazo">
+              <span class="sufixo" aria-hidden="true">meses</span>
+            </div>
+            <span class="erro" id="e-prazo" role="alert"></span>
+          </div>
+          <div class="campo" style="margin-bottom:0">
+            <label for="decorrido">Já se passaram</label>
+            <div class="entrada">
+              <input type="text" id="decorrido" class="com-sufixo" inputmode="numeric"
+                     autocomplete="off" placeholder="6" aria-describedby="e-decorrido">
+              <span class="sufixo" aria-hidden="true">meses</span>
+            </div>
+            <span class="erro" id="e-decorrido" role="alert"></span>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="navegacao">
+      <button class="btn" type="button" data-voltar="p-avanco">Voltar</button>
+      <button class="btn btn-primary" type="button" id="calcular">Ver o resultado</button>
+    </div>
+  </section>
+
+  <!-- ============ PASSO 4 — RESULTADO ============ -->
+  <section class="passo" id="p-resultado" hidden aria-labelledby="h-resultado" tabindex="-1">
+    <h2 id="h-resultado" class="visually-hidden">Resultado da obra</h2>
+
+    <div class="card">
+      <div class="veredito" id="veredito" role="status" aria-live="polite">
+        <span class="rotulo" id="veredito-rotulo"></span>
+        <span class="numero" id="veredito-numero"></span>
+        <p class="frase" id="veredito-frase"></p>
+      </div>
+
+      <div class="barras" id="barras" hidden>
+        <div class="barra-linha">
+          <div class="barra-topo"><span>Combinado no começo</span><b id="b-orcamento"></b></div>
+          <div class="barra"><span class="seg-orcado" style="flex:1"></span></div>
+        </div>
+        <div class="barra-linha">
+          <div class="barra-topo"><span>Vai custar no final</span><b id="b-projetado"></b></div>
+          <div class="barra" id="barra-projetada" role="img" aria-label="">
+            <span class="seg-orcado" id="seg-dentro"></span>
+            <span class="seg-excedente" id="seg-fora"></span>
+          </div>
+        </div>
+        <dl class="legenda">
+          <div>
+            <dt>
+              <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><rect width="12" height="12" rx="2" fill="var(--serie)"/></svg>
+              Dentro do combinado
+            </dt>
+          </div>
+          <div id="legenda-excedente">
+            <dt>
+              <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M6 .5 11.5 10.5H.5z" fill="var(--critical)"/></svg>
+              Acima do combinado
+            </dt>
+          </div>
+        </dl>
+      </div>
+
+      <div class="tiles" id="tiles" hidden>
+        <div class="tile">
+          <p class="rot">Cada R$ 1,00 do orçamento está custando</p>
+          <p class="val" id="t-idc"></p>
+          <p class="obs" id="t-idc-obs"></p>
+        </div>
+        <div class="tile">
+          <p class="rot">Falta gastar para terminar</p>
+          <p class="val" id="t-falta"></p>
+          <p class="obs">Mantido o ritmo de hoje</p>
+        </div>
+        <div class="tile" id="tile-prazo" hidden>
+          <p class="rot">Vai terminar em</p>
+          <p class="val" id="t-prazo"></p>
+          <p class="obs" id="t-prazo-obs"></p>
+        </div>
+      </div>
+
+      <h3 style="margin-top:1.5rem">Situação de cada etapa</h3>
+      <ul class="lista-etapas" id="lista-etapas"></ul>
+
+      <details class="conta" id="conta">
+        <summary>Como essa conta foi feita</summary>
+        <p style="margin-top:.5rem;color:var(--ink-2);font-size:.9375rem">
+          Método de valor agregado, o mesmo usado em gestão de obra. Não tem chute: são
+          quatro divisões, e você pode conferir na calculadora do celular.
+        </p>
+        <table>
+          <tbody>
+            <tr><th scope="row">O que a obra já entregou, a preço de orçamento</th><td id="c-va"></td></tr>
+            <tr><th scope="row">O que você já pagou por essa entrega</th><td id="c-cr"></td></tr>
+            <tr><th scope="row">Índice de desempenho de custo (entregue ÷ pago)</th><td id="c-idc"></td></tr>
+            <tr><th scope="row">Custo final projetado (orçamento ÷ índice)</th><td id="c-ent"></td></tr>
+            <tr><th scope="row">Diferença contra o combinado</th><td id="c-vnt"></td></tr>
+          </tbody>
+        </table>
+        <p class="nota" id="c-cenario"></p>
+      </details>
+
+      <div class="acoes-resultado">
+        <button class="btn btn-zap" type="button" id="zap">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.5-.6-2.7-1.2-4.4-3.9-4.6-4.1-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.1-.3.3-.1.6.1.3.6 1.1 1.4 1.8 1 .9 1.8 1.1 2 1.2.3.1.4.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.2.1.7-.1 1.3Z"/></svg>
+          Mandar no WhatsApp
+        </button>
+        <button class="btn" type="button" id="imprimir">Salvar em PDF</button>
+        <button class="btn" type="button" id="refazer">Fazer de novo</button>
+      </div>
+    </div>
+
+    <div class="card" id="convite-numeros" hidden style="margin-top:1rem">
+      <h3>Sabe quanto já foi gasto na obra?</h3>
+      <p style="color:var(--ink-2);margin-top:.4rem">
+        Com o orçamento e o gasto até hoje, eu mostro se a obra está estourando e
+        quanto ela deve custar no final.
+      </p>
+      <button class="btn btn-primary btn-largo" type="button" id="ir-numeros" style="margin-top:1rem">
+        Colocar os números
+      </button>
+    </div>
+
+    <div class="card oferta" id="oferta" hidden style="margin-top:1rem">
+      <h2>Esse número muda toda semana</h2>
+      <p>
+        A conta que você acabou de ver vale para hoje. Semana que vem, com mais nota
+        lançada, ela é outra — e refazer isso à mão, obra por obra, é o que ninguém faz
+        até o problema já ter acontecido.
+      </p>
+      <p>
+        O painel de obra lê a planilha que você já usa e refaz tudo sozinho, por obra,
+        por etapa e por fornecedor. Você atualiza a planilha; o painel se atualiza.
+      </p>
+      <div class="acoes-oferta">
+        <button class="btn btn-zap btn-largo" type="button" id="falar-whats">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.5-.6-2.7-1.2-4.4-3.9-4.6-4.1-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.1-.3.3-.1.6.1.3.6 1.1 1.4 1.8 1 .9 1.8 1.1 2 1.2.3.1.4.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.2.1.7-.1 1.3Z"/></svg>
+          Falar com a Capixaba Shop
+        </button>
+        <a class="btn btn-largo" href="https://felipecapixaba.github.io/painel-obras/" target="_blank" rel="noopener">
+          Ver o painel funcionando
+        </a>
+      </div>
+      <p class="captura-msg">
+        O WhatsApp abre com o resultado desta conta já escrito. Você lê antes de enviar.
+      </p>
+    </div>
+  </section>
+
+  <p class="aviso">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+      <circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.5v.5" stroke-linecap="round"/>
+    </svg>
+    <span>
+      Esta é uma <strong>estimativa</strong>. Ela projeta o ritmo de hoje até o fim da obra
+      e não considera aditivo, mudança de projeto, reajuste de material ou chuva parada.
+      Os pesos de cada etapa são de uma obra comum de alvenaria — na sua obra podem ser
+      um pouco diferentes. Não substitui o controle do engenheiro nem a conta do contador.
+    </span>
+  </p>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Capixaba Shop — Vitória, Espírito Santo. Trabalha e Confia.</p>
+    <p>Nada do que você digita aqui sai do seu celular. A conta roda no próprio aparelho.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // ---------- Etapas de uma obra comum de alvenaria ----------
+  // O peso é a fatia que a etapa representa no custo total. Somam 100.
+  var ETAPAS = [
+    { id: 'canteiro',   nome: 'Limpeza do terreno e canteiro', peso: 3 },
+    { id: 'fundacao',   nome: 'Fundação (sapata, baldrame)',   peso: 10 },
+    { id: 'estrutura',  nome: 'Estrutura (pilar, viga, laje)', peso: 18 },
+    { id: 'alvenaria',  nome: 'Paredes de alvenaria',          peso: 10 },
+    { id: 'telhado',    nome: 'Telhado',                       peso: 7 },
+    { id: 'instalacoes',nome: 'Elétrica e hidráulica',         peso: 12 },
+    { id: 'reboco',     nome: 'Reboco e contrapiso',           peso: 12 },
+    { id: 'esquadrias', nome: 'Portas e janelas',              peso: 7 },
+    { id: 'revestimento',nome: 'Piso e azulejo',               peso: 11 },
+    { id: 'pintura',    nome: 'Pintura e acabamento',          peso: 10 }
+  ];
+  var ESTADOS = [
+    { v: 0,   rot: 'Não começou' },
+    { v: 0.5, rot: 'Na metade' },
+    { v: 1,   rot: 'Pronta' }
+  ];
+
+  var PERFIS = {
+    dono:       { passos: ['p-perfil','p-avanco','p-numeros','p-resultado'], dinheiro: true },
+    engenheiro: { passos: ['p-perfil','p-avanco','p-numeros','p-resultado'], dinheiro: true },
+    mestre:     { passos: ['p-perfil','p-avanco','p-resultado'],             dinheiro: false },
+    pedreiro:   { passos: ['p-perfil','p-avanco','p-resultado'],             dinheiro: false }
+  };
+
+  var moeda  = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+  var enxuto = new Intl.NumberFormat('pt-BR', { minimumFractionDigits: 0, maximumFractionDigits: 1 });
+  var num2   = new Intl.NumberFormat('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  function meses(n) { return enxuto.format(n) + (Math.abs(n - 1) < 0.05 ? ' mês' : ' meses'); }
+
+  var estado = {
+    perfil: null,
+    modo: 'etapas',
+    etapas: {},
+    pctDireto: null,
+    orcamento: null,
+    gasto: null,
+    prazo: null,
+    decorrido: null
+  };
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  // ---------- Persistência ----------
+  function salvar() {
+    try { localStorage.setItem('calc-obra', JSON.stringify(estado)); } catch (e) {}
+  }
+  function restaurar() {
+    try {
+      var bruto = localStorage.getItem('calc-obra');
+      if (!bruto) return;
+      var s = JSON.parse(bruto);
+      if (s && typeof s === 'object') {
+        Object.keys(estado).forEach(function (k) {
+          if (s[k] !== undefined && s[k] !== null) estado[k] = s[k];
+        });
+      }
+    } catch (e) {}
+  }
+
+  // ---------- Números ----------
+  // Reais inteiros: obra não se controla em centavos. Digita 500000, vira 500.000.
+  function soDigitos(txt) { return (txt || '').replace(/\D/g, ''); }
+  function mascaraReais(el) {
+    el.addEventListener('input', function () {
+      var d = soDigitos(el.value);
+      el.value = d ? parseInt(d, 10).toLocaleString('pt-BR') : '';
+    });
+  }
+  function valorDe(el) {
+    var d = soDigitos(el.value);
+    return d ? parseInt(d, 10) : NaN;
+  }
+  function numeroSimples(el) {
+    var s = (el.value || '').trim().replace(',', '.');
+    if (!s) return NaN;
+    var n = parseFloat(s);
+    return isFinite(n) ? n : NaN;
+  }
+  function erro(idCampo, msg) {
+    var span = $('e-' + idCampo);
+    if (span) span.textContent = msg || '';
+    var campo = $(idCampo);
+    if (campo) campo.setAttribute('aria-invalid', msg ? 'true' : 'false');
+  }
+
+  // ---------- Montar etapas ----------
+  function montarEtapas() {
+    var alvo = $('etapas');
+    alvo.innerHTML = '';
+    ETAPAS.forEach(function (etapa) {
+      var box = document.createElement('div');
+      box.className = 'etapa';
+      box.id = 'etapa-' + etapa.id;
+
+      var topo = document.createElement('div');
+      topo.className = 'etapa-topo';
+      topo.innerHTML = '<span class="etapa-nome">' + etapa.nome + '</span>' +
+                       '<span class="etapa-peso">vale ' + etapa.peso + '% da obra</span>';
+      box.appendChild(topo);
+
+      var opcoes = document.createElement('div');
+      opcoes.className = 'opcoes';
+      opcoes.setAttribute('role', 'radiogroup');
+      opcoes.setAttribute('aria-label', etapa.nome);
+
+      ESTADOS.forEach(function (op, i) {
+        var idInput = 'op-' + etapa.id + '-' + i;
+        var input = document.createElement('input');
+        input.type = 'radio';
+        input.name = 'etapa-' + etapa.id;
+        input.id = idInput;
+        input.value = String(op.v);
+        // Só marca o que o usuário respondeu de fato. Deixar "Não começou"
+        // pré-selecionado faria a tela parecer respondida antes de ele tocar nela.
+        if (Object.prototype.hasOwnProperty.call(estado.etapas, etapa.id) &&
+            estado.etapas[etapa.id] === op.v) input.checked = true;
+        input.addEventListener('change', function () {
+          estado.etapas[etapa.id] = op.v;
+          box.classList.toggle('feita', op.v === 1);
+          atualizarResumo();
+          salvar();
+        });
+
+        var label = document.createElement('label');
+        label.setAttribute('for', idInput);
+        label.textContent = op.rot;
+
+        opcoes.appendChild(input);
+        opcoes.appendChild(label);
+      });
+
+      box.classList.toggle('feita', (estado.etapas[etapa.id] || 0) === 1);
+      box.appendChild(opcoes);
+      alvo.appendChild(box);
+    });
+  }
+
+  function avancoPorEtapas() {
+    var soma = 0, total = 0;
+    ETAPAS.forEach(function (e) {
+      total += e.peso;
+      soma += e.peso * (estado.etapas[e.id] || 0);
+    });
+    return total ? soma / total : 0;
+  }
+
+  function avanco() {
+    if (estado.modo === 'pct') {
+      var p = numeroSimples($('pct-direto'));
+      return isFinite(p) ? p / 100 : NaN;
+    }
+    return avancoPorEtapas();
+  }
+
+  function atualizarResumo() {
+    var a = avanco();
+    var pct = isFinite(a) ? Math.max(0, Math.min(1, a)) * 100 : 0;
+    $('resumo-val').textContent = enxuto.format(pct) + '% pronta';
+    $('resumo-barra').style.width = pct + '%';
+  }
+
+  // ---------- Navegação ----------
+  function passosDoPerfil() {
+    return (PERFIS[estado.perfil] || PERFIS.dono).passos;
+  }
+  function irPara(idPasso) {
+    ['p-perfil','p-avanco','p-numeros','p-resultado'].forEach(function (id) {
+      $(id).hidden = (id !== idPasso);
+    });
+    var passos = passosDoPerfil();
+    var i = passos.indexOf(idPasso);
+    var trilha = $('trilha');
+    if (i > 0) {
+      trilha.hidden = false;
+      $('trilha-texto').textContent = 'Passo ' + (i + 1) + ' de ' + passos.length;
+      $('trilha-barra').style.width = ((i + 1) / passos.length * 100) + '%';
+    } else {
+      trilha.hidden = true;
+    }
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }
+
+  // ---------- Cálculo ----------
+  function calcular(bac, pct, ac, prazo, dec) {
+    var ev  = bac * pct;
+    var cpi = ev / ac;
+    var eac = bac / cpi;
+    var r = {
+      ev: ev, cpi: cpi, eac: eac,
+      vac: bac - eac,
+      etc: Math.max(eac - ac, 0),
+      eacOtimista: ac + (bac - ev)
+    };
+    if (isFinite(prazo) && isFinite(dec) && prazo > 0 && dec > 0) {
+      var pv = bac * (dec / prazo);
+      var spi = pv > 0 ? ev / pv : NaN;
+      if (isFinite(spi) && spi > 0) {
+        r.spi = spi;
+        r.prazoProjetado = prazo / spi;
+      }
+    }
+    return r;
+  }
+
+  // ---------- Resultado ----------
+  function listarEtapas() {
+    var ul = $('lista-etapas');
+    ul.innerHTML = '';
+    if (estado.modo === 'pct') { ul.previousElementSibling.hidden = true; ul.hidden = true; return; }
+    ul.previousElementSibling.hidden = false;
+    ul.hidden = false;
+    ETAPAS.forEach(function (e) {
+      var v = estado.etapas[e.id] || 0;
+      var li = document.createElement('li');
+      var marca = v === 1
+        ? '<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 5" fill="none" stroke="var(--good)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+        : (v === 0.5
+          ? '<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="var(--muted)" stroke-width="2"/><path d="M8 1.5A6.5 6.5 0 0 1 8 14.5Z" fill="var(--muted)"/></svg>'
+          : '<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="var(--line-forte)" stroke-width="2"/></svg>');
+      li.innerHTML = marca + '<span class="nome">' + e.nome + '</span>' +
+        '<span class="estado">' + (v === 1 ? 'Pronta' : v === 0.5 ? 'Na metade' : 'Não começou') + '</span>';
+      ul.appendChild(li);
+    });
+  }
+
+  var WHATS_CAPIXABA = '5527992492070';
+
+  /* Mensagem para a Capixaba Shop. Diferente do resumo que o mestre manda pro
+     dono: aqui quem lê é quem vai vender, e o que importa é chegar com o número
+     do problema já na primeira linha. */
+  function textoContato(pct, temDinheiro, bac, r) {
+    var l = [];
+    l.push('Olá! Vim da calculadora de obra do site da Capixaba Shop.');
+    l.push('');
+    l.push('Minha obra está ' + enxuto.format(pct * 100) + '% pronta.');
+    if (temDinheiro && r) {
+      l.push('Combinado: ' + moeda.format(bac));
+      l.push('Projeção de custo final: ' + moeda.format(r.eac));
+      l.push((r.vac < 0 ? 'Estouro de ' : 'Folga de ') + moeda.format(Math.abs(r.vac)) + '.');
+    }
+    l.push('');
+    l.push('Quero entender como o painel de obra acompanha isso toda semana.');
+    return l.join('\n');
+  }
+
+  function textoWhats(pct, temDinheiro, bac, r) {
+    var l = [];
+    l.push('*Situação da obra* — ' + new Date().toLocaleDateString('pt-BR'));
+    l.push('');
+    l.push('Obra ' + enxuto.format(pct * 100) + '% pronta.');
+    if (estado.modo === 'etapas') {
+      l.push('');
+      ETAPAS.forEach(function (e) {
+        var v = estado.etapas[e.id] || 0;
+        l.push((v === 1 ? '[x] ' : v === 0.5 ? '[/] ' : '[ ] ') + e.nome);
+      });
+    }
+    if (temDinheiro) {
+      l.push('');
+      l.push('Combinado: ' + moeda.format(bac));
+      l.push('Vai custar: ' + moeda.format(r.eac));
+      l.push((r.vac < 0 ? 'Estouro de ' : 'Folga de ') + moeda.format(Math.abs(r.vac)));
+    }
+    l.push('');
+    l.push('Conta feita na calculadora de obra da Capixaba Shop.');
+    return l.join('\n');
+  }
+
+  function mostrarResultado() {
+    var pct = avanco();
+    var bac = estado.orcamento;
+    var ac  = estado.gasto;
+    var temDinheiro = isFinite(bac) && isFinite(ac) && bac > 0 && ac > 0;
+    var r = null;
+
+    var box = $('veredito');
+    listarEtapas();
+
+    if (temDinheiro) {
+      r = calcular(bac, pct, ac, estado.prazo, estado.decorrido);
+      var estouro = r.vac < 0;
+      box.className = 'veredito ' + (estouro ? 'ruim' : 'bom');
+      $('veredito-rotulo').textContent = estouro
+        ? 'A obra vai passar do combinado em' : 'A obra vai fechar abaixo do combinado em';
+      $('veredito-numero').textContent = moeda.format(Math.abs(r.vac));
+      $('veredito-frase').textContent =
+        'A obra está ' + enxuto.format(pct * 100) + '% pronta e já consumiu ' +
+        enxuto.format(ac / bac * 100) + '% do dinheiro. Nesse ritmo, ela fecha em ' +
+        moeda.format(r.eac) + ' — ' + enxuto.format(Math.abs(r.vac) / bac * 100) + '% ' +
+        (estouro ? 'acima' : 'abaixo') + ' do combinado.';
+
+      var razao = r.eac / bac;
+      if (estouro) {
+        $('seg-dentro').style.flex = '1';
+        $('seg-fora').style.flex = String(razao - 1);
+        $('seg-fora').hidden = false;
+        $('legenda-excedente').hidden = false;
+      } else {
+        $('seg-dentro').style.flex = String(razao);
+        $('seg-fora').style.flex = '0';
+        $('seg-fora').hidden = true;
+        $('legenda-excedente').hidden = true;
+      }
+      $('barra-projetada').setAttribute('aria-label',
+        'Custo final projetado de ' + moeda.format(r.eac) + ', contra o combinado de ' + moeda.format(bac) + '.');
+      $('b-orcamento').textContent = moeda.format(bac);
+      $('b-projetado').textContent = moeda.format(r.eac);
+
+      $('t-idc').textContent = 'R$ ' + num2.format(1 / r.cpi);
+      $('t-idc-obs').textContent = r.cpi < 1 ? 'Está saindo mais caro' : 'Está saindo mais barato';
+      $('t-falta').textContent = moeda.format(r.etc);
+
+      if (r.prazoProjetado) {
+        $('tile-prazo').hidden = false;
+        $('t-prazo').textContent = meses(r.prazoProjetado);
+        var atraso = r.prazoProjetado - estado.prazo;
+        $('t-prazo-obs').textContent = atraso > 0.05 ? meses(atraso) + ' de atraso'
+          : (atraso < -0.05 ? meses(Math.abs(atraso)) + ' adiantada' : 'No prazo');
+      } else {
+        $('tile-prazo').hidden = true;
+      }
+
+      $('c-va').textContent  = moeda.format(r.ev);
+      $('c-cr').textContent  = moeda.format(ac);
+      $('c-idc').textContent = num2.format(r.cpi);
+      $('c-ent').textContent = moeda.format(r.eac);
+      $('c-vnt').textContent = (r.vac < 0 ? '− ' : '+ ') + moeda.format(Math.abs(r.vac));
+      $('c-cenario').textContent =
+        'Se tudo que falta sair exatamente pelo preço orçado, a obra fecha em ' +
+        moeda.format(r.eacOtimista) + '. O número acima assume que o desvio de hoje continua ' +
+        'até o fim — é o que costuma acontecer quando a causa não foi resolvida.';
+
+      $('barras').hidden = false;
+      $('tiles').hidden = false;
+      $('conta').hidden = false;
+      $('convite-numeros').hidden = true;
+      $('oferta').hidden = false;
+    } else {
+      box.className = 'veredito neutro';
+      $('veredito-rotulo').textContent = 'Situação da obra hoje';
+      $('veredito-numero').textContent = enxuto.format(pct * 100) + '% pronta';
+      var faltando = ETAPAS.filter(function (e) { return (estado.etapas[e.id] || 0) < 1; });
+      $('veredito-frase').textContent = estado.modo === 'etapas'
+        ? (faltando.length
+            ? 'Ainda faltam ' + faltando.length + (faltando.length === 1 ? ' etapa' : ' etapas') +
+              ' para terminar. A próxima é: ' + faltando[0].nome.toLowerCase() + '.'
+            : 'Todas as etapas estão concluídas.')
+        : 'Avanço informado direto.';
+      $('barras').hidden = true;
+      $('tiles').hidden = true;
+      $('conta').hidden = true;
+      $('convite-numeros').hidden = false;
+      $('oferta').hidden = true;
+    }
+
+    $('zap').onclick = function () {
+      var texto = textoWhats(pct, temDinheiro, bac, r);
+      window.open('https://wa.me/?text=' + encodeURIComponent(texto), '_blank', 'noopener');
+    };
+
+    // Este vai para o número da Capixaba Shop, com o diagnóstico junto.
+    var falar = $('falar-whats');
+    if (falar) falar.onclick = function () {
+      var texto = textoContato(pct, temDinheiro, bac, r);
+      window.open('https://wa.me/' + WHATS_CAPIXABA + '?text=' + encodeURIComponent(texto), '_blank', 'noopener');
+    };
+
+    irPara('p-resultado');
+    $('p-resultado').focus();
+  }
+
+  // ---------- Ligações ----------
+  document.querySelectorAll('.perfil').forEach(function (b) {
+    b.addEventListener('click', function () {
+      estado.perfil = b.getAttribute('data-perfil');
+      salvar();
+      $('ajuda-avanco').innerHTML = (estado.perfil === 'pedreiro' || estado.perfil === 'mestre')
+        ? 'Marque o que a turma já terminou. Se uma etapa está pela metade, marque <strong>Na metade</strong> mesmo.'
+        : 'Vá marcando etapa por etapa. Se uma etapa está pela metade, marque <strong>Na metade</strong> mesmo — não precisa ser exato.';
+      irPara('p-avanco');
+    });
+  });
+
+  document.querySelectorAll('[data-voltar]').forEach(function (b) {
+    b.addEventListener('click', function () { irPara(b.getAttribute('data-voltar')); });
+  });
+
+  $('modo-etapas').addEventListener('click', function () {
+    estado.modo = 'etapas';
+    $('modo-etapas').setAttribute('aria-pressed', 'true');
+    $('modo-pct').setAttribute('aria-pressed', 'false');
+    $('bloco-etapas').hidden = false;
+    $('bloco-pct').hidden = true;
+    erro('pct-direto', '');
+    atualizarResumo(); salvar();
+  });
+  $('modo-pct').addEventListener('click', function () {
+    estado.modo = 'pct';
+    $('modo-pct').setAttribute('aria-pressed', 'true');
+    $('modo-etapas').setAttribute('aria-pressed', 'false');
+    $('bloco-pct').hidden = false;
+    $('bloco-etapas').hidden = true;
+    atualizarResumo(); salvar();
+  });
+  $('pct-direto').addEventListener('input', function () {
+    estado.pctDireto = this.value; atualizarResumo(); salvar();
+  });
+
+  $('avanco-continuar').addEventListener('click', function () {
+    var a = avanco();
+    if (!isFinite(a) || a <= 0) {
+      if (estado.modo === 'pct') {
+        erro('pct-direto', 'Informe quanto da obra já está pronta.');
+        $('pct-direto').focus();
+      } else {
+        erro('pct-direto', '');
+        alert('Marque pelo menos uma etapa que já começou.');
+      }
+      return;
+    }
+    if (estado.modo === 'pct' && a > 1) {
+      erro('pct-direto', 'A obra não passa de 100%.');
+      $('pct-direto').focus();
+      return;
+    }
+    erro('pct-direto', '');
+    if (PERFIS[estado.perfil] && PERFIS[estado.perfil].dinheiro) irPara('p-numeros');
+    else mostrarResultado();
+  });
+
+  mascaraReais($('orcamento'));
+  mascaraReais($('gasto'));
+
+  $('calcular').addEventListener('click', function () {
+    var ok = true;
+    ['orcamento','gasto','prazo','decorrido'].forEach(function (k) { erro(k, ''); });
+
+    var bac = valorDe($('orcamento'));
+    var ac  = valorDe($('gasto'));
+    if (!isFinite(bac) || bac <= 0) { erro('orcamento', 'Informe quanto foi combinado.'); ok = false; }
+    if (!isFinite(ac)  || ac  <= 0) { erro('gasto', 'Informe quanto já foi gasto.'); ok = false; }
+
+    var prazo = numeroSimples($('prazo'));
+    var dec   = numeroSimples($('decorrido'));
+    if ($('prazo').value.trim() || $('decorrido').value.trim()) {
+      if (!isFinite(prazo) || prazo <= 0) { erro('prazo', 'Informe o prazo combinado.'); ok = false; }
+      else if (!isFinite(dec) || dec <= 0) { erro('decorrido', 'Informe quantos meses já passaram.'); ok = false; }
+      else if (dec > prazo) { erro('decorrido', 'Não pode passar do prazo combinado.'); ok = false; }
+    }
+    if (!ok) {
+      var primeiro = document.querySelector('#p-numeros [aria-invalid="true"]');
+      if (primeiro) primeiro.focus();
+      return;
+    }
+
+    estado.orcamento = bac;
+    estado.gasto = ac;
+    estado.prazo = isFinite(prazo) ? prazo : null;
+    estado.decorrido = isFinite(dec) ? dec : null;
+    salvar();
+    mostrarResultado();
+  });
+
+  $('ir-numeros').addEventListener('click', function () { irPara('p-numeros'); });
+  $('imprimir').addEventListener('click', function () { window.print(); });
+  $('refazer').addEventListener('click', function () {
+    estado = { perfil: null, modo: 'etapas', etapas: {}, pctDireto: null,
+               orcamento: null, gasto: null, prazo: null, decorrido: null };
+    try { localStorage.removeItem('calc-obra'); } catch (e) {}
+    ['orcamento','gasto','prazo','decorrido','pct-direto'].forEach(function (id) { $(id).value = ''; });
+    montarEtapas(); atualizarResumo(); irPara('p-perfil');
+  });
+
+  var captura = null;   // [app] o formulário de e-mail virou botão de WhatsApp
+  if (captura) captura.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var email = $('email').value.trim();
+    var msg = $('captura-msg');
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)) { msg.textContent = 'Confira o e-mail digitado.'; return; }
+    var endpoint = captura.getAttribute('data-endpoint');
+    if (!endpoint) { msg.textContent = 'Envio ainda não conectado nesta página. Configure o endpoint antes de publicar.'; return; }
+    msg.textContent = 'Enviando...';
+    fetch(endpoint, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, origem: 'calculadora-obra' })
+    }).then(function (res) {
+      msg.textContent = res.ok ? 'Pronto. Enviamos para o seu e-mail.'
+                               : 'Não conseguimos enviar agora. Tente de novo em instantes.';
+    }).catch(function () { msg.textContent = 'Não conseguimos enviar agora. Tente de novo em instantes.'; });
+  });
+
+  $('tema').addEventListener('click', function () {
+    var raiz = document.documentElement;
+    var escuro = raiz.getAttribute('data-theme') === 'dark' ||
+      (!raiz.hasAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    raiz.setAttribute('data-theme', escuro ? 'light' : 'dark');
+  });
+
+  /* Instalação como aplicativo e funcionamento sem sinal — útil no canteiro. */
+  if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+    addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
+  }
+
+  // ---------- Início ----------
+  restaurar();
+  montarEtapas();
+  if (estado.modo === 'pct') $('modo-pct').click();
+  if (estado.pctDireto) $('pct-direto').value = estado.pctDireto;
+  if (estado.orcamento) $('orcamento').value = estado.orcamento.toLocaleString('pt-BR');
+  if (estado.gasto) $('gasto').value = estado.gasto.toLocaleString('pt-BR');
+  if (estado.prazo) $('prazo').value = estado.prazo;
+  if (estado.decorrido) $('decorrido').value = estado.decorrido;
+  atualizarResumo();
+  irPara('p-perfil');
+})();
+</script>
+
+</body>
+</html>
