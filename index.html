@@ -1222,23 +1222,8 @@ details.conta p.nota { margin-top: .75rem; color: var(--ink-2); font-size: .9375
     montarEtapas(); atualizarResumo(); irPara('p-perfil');
   });
 
-  var captura = null;   // [app] o formulário de e-mail virou botão de WhatsApp
-  if (captura) captura.addEventListener('submit', function (ev) {
-    ev.preventDefault();
-    var email = $('email').value.trim();
-    var msg = $('captura-msg');
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)) { msg.textContent = 'Confira o e-mail digitado.'; return; }
-    var endpoint = captura.getAttribute('data-endpoint');
-    if (!endpoint) { msg.textContent = 'Envio ainda não conectado nesta página. Configure o endpoint antes de publicar.'; return; }
-    msg.textContent = 'Enviando...';
-    fetch(endpoint, {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email, origem: 'calculadora-obra' })
-    }).then(function (res) {
-      msg.textContent = res.ok ? 'Pronto. Enviamos para o seu e-mail.'
-                               : 'Não conseguimos enviar agora. Tente de novo em instantes.';
-    }).catch(function () { msg.textContent = 'Não conseguimos enviar agora. Tente de novo em instantes.'; });
-  });
+  /* [app] A captura por e-mail foi substituída por contato no WhatsApp, ligado
+     em mostrarResultado() — ver o botão #falar-whats. */
 
   $('tema').addEventListener('click', function () {
     var raiz = document.documentElement;
