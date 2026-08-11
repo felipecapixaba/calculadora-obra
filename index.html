@@ -378,6 +378,31 @@ details.conta p.nota { margin-top: .75rem; color: var(--ink-2); font-size: .9375
 .oferta .acoes-oferta .btn-zap { background: #1f8f4e; color: #fff; }
 .oferta .acoes-oferta .btn-zap:hover { background: #1a7a43; }
 
+.trib-frase { font-size: 1rem; margin: .5rem 0 1rem; line-height: 1.55; }
+.trib-tabela { width: 100%; border-collapse: collapse; }
+.trib-tabela th, .trib-tabela td { padding: .55rem 0; font-size: .9375rem; text-align: left; border-bottom: 1px solid var(--line); }
+.trib-tabela td { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.trib-tabela th { font-weight: 600; }
+.trib-esfera-c { font-weight: 400; color: var(--ink-2); font-size: .8125rem; margin-left: .35rem; }
+.trib-sub { font-size: .8125rem; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-2); margin: 1.4rem 0 .7rem; }
+.trib-barras { display: grid; gap: .5rem; }
+.trib-linha { display: grid; grid-template-columns: 6.2rem 1fr auto; align-items: center; gap: .6rem; font-size: .9375rem; }
+.trib-ano { font-weight: 600; font-variant-numeric: tabular-nums; }
+.trib-trilho { background: var(--line); border-radius: 5px; height: 1.05rem; overflow: hidden; }
+.trib-trilho i { display: block; height: 100%; border-radius: 5px; background: var(--serie); }
+.trib-linha.futuro .trib-trilho i { background: #e08a2e; }
+.trib-valor { font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+.trib-nota-c { font-size: .875rem; color: var(--ink-2); line-height: 1.6; margin-top: 1rem; }
+.trib-aviso-c {
+  font-size: .8125rem; color: var(--ink-2); line-height: 1.6; margin-top: .8rem;
+  padding: .7rem .85rem; border-radius: var(--radius);
+  background: var(--surface-2); border: 1px solid var(--line);
+}
+@media (max-width: 30rem) {
+  .trib-linha { grid-template-columns: 5rem 1fr; }
+  .trib-valor { grid-column: 2; text-align: right; }
+}
+
 .aviso {
   display: flex; gap: .6rem; align-items: flex-start; margin-top: 1.5rem;
   font-size: .875rem; color: var(--ink-2);
@@ -673,6 +698,11 @@ details.conta p.nota { margin-top: .75rem; color: var(--ink-2); font-size: .9375
         </table>
         <p class="nota" id="c-cenario"></p>
       </details>
+
+      <div class="card" id="bloco-tributos" hidden style="margin-top:1.25rem;padding:1.1rem 1.15rem">
+        <h2 style="font-size:1.05rem;margin:0 0 .2rem">O peso dos tributos nesta obra</h2>
+        <div id="trib-corpo"></div>
+      </div>
 
       <div class="acoes-resultado">
         <button class="btn btn-zap" type="button" id="zap">
@@ -1104,6 +1134,8 @@ details.conta p.nota { margin-top: .75rem; color: var(--ink-2); font-size: .9375
       $('oferta').hidden = true;
     }
 
+    mostrarTributos(temDinheiro ? bac : 0);
+
     $('zap').onclick = function () {
       var texto = textoWhats(pct, temDinheiro, bac, r);
       window.open('https://wa.me/?text=' + encodeURIComponent(texto), '_blank', 'noopener');
@@ -1231,6 +1263,237 @@ details.conta p.nota { margin-top: .75rem; color: var(--ink-2); font-size: .9375
       (!raiz.hasAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
     raiz.setAttribute('data-theme', escuro ? 'light' : 'dark');
   });
+
+  /* ---------- Tributos ---------- */
+  /* ============================================================
+     TRIBUTOS SOBRE A OBRA
+     Módulo de cálculo puro: entra faturamento, sai a carga tributária do ano
+     pedido. Não toca no DOM — quem desenha é a camada de app e a calculadora.
+
+     A ARMADILHA CENTRAL, e a razão deste arquivo existir separado:
+     a reforma substitui apenas os tributos sobre CONSUMO (PIS, COFINS, ICMS,
+     ISS). IRPJ e CSLL continuam exatamente como são. Comparar "carga de hoje"
+     com "CBS + IBS" faz a conta futura parecer 4% contra 11% — e é mentira.
+     Por isso não existe função "carga da reforma": existe `cargaNoAno`, que
+     monta a lista inteira de tributos vigentes naquele ano.
+
+     AVISO QUE NÃO PODE SUMIR DA TELA: isto é estimativa educativa, não parecer
+     contábil. A alíquota de ISS muda por município, o enquadramento muda por
+     empresa, e a reforma ainda está em transição.
+     ============================================================ */
+  const Tributos = (() => {
+
+    /* ------------------------------------------------------------------
+       REGIME DE HOJE — Lucro Presumido, o mais comum em construtora média
+       (o Simples tem teto de R$ 4,8 mi/ano, que algumas obras estouram fácil).
+       ------------------------------------------------------------------ */
+    const PRESUMIDO = {
+      // Base presumida sobre a receita. 8% vale para empreitada COM
+      // fornecimento de material; só mão de obra vai a 32%.
+      baseIRPJ: { comMaterial: 0.08, soMaoDeObra: 0.32 },
+      baseCSLL: { comMaterial: 0.12, soMaoDeObra: 0.32 },
+      aliqIRPJ: 0.15,
+      adicionalIRPJ: 0.10,
+      limiteAdicionalAno: 240000,   // R$ 60 mil por trimestre
+      aliqCSLL: 0.09,
+      aliqPIS: 0.0065,              // cumulativo, que é o do Presumido
+      aliqCOFINS: 0.03,
+    };
+
+    /* ------------------------------------------------------------------
+       REFORMA — LC 214/2025. Alíquotas de referência do IVA pleno (2033).
+       ------------------------------------------------------------------ */
+    const REFORMA = {
+      refCBS: 0.088,
+      refIBS: 0.177,
+      // Construção e alienação de imóvel entram no regime específico de bens
+      // imóveis, com redução de 50% da alíquota cheia.
+      reducaoImoveis: 0.50,
+    };
+
+    /* Quanto do ISS/ICMS antigo ainda vale, e quanto do IBS já vale, por ano.
+       2029 a 2032 é a rampa: o sistema antigo cai 10 pontos ao ano. */
+    function pesosDoAno(ano) {
+      if (ano <= 2026) return { antigo: 1, ibs: 0, cbsValendo: false, pisCofins: true, teste: true };
+      if (ano <= 2028) return { antigo: 1, ibs: 0, cbsValendo: true, pisCofins: false, ibsSimbolico: true };
+      if (ano >= 2033) return { antigo: 0, ibs: 1, cbsValendo: true, pisCofins: false };
+      // 2029→0,9 · 2030→0,8 · 2031→0,7 · 2032→0,6
+      const antigo = 1 - (ano - 2028) * 0.1;
+      return { antigo, ibs: 1 - antigo, cbsValendo: true, pisCofins: false };
+    }
+
+    const NOTA_ANO = {
+      2026: 'Ano-teste: CBS e IBS aparecem na nota fiscal em alíquota simbólica, mas não são recolhidos. Vale o sistema antigo inteiro.',
+      2027: 'A CBS entra valendo e PIS/COFINS são extintos. O IBS ainda é simbólico, e ISS e ICMS continuam como hoje.',
+      2028: 'Mesma regra de 2027.',
+      2029: 'Começa a transição: o IBS sobe 10 pontos ao ano e ISS e ICMS caem na mesma proporção.',
+      2030: 'Transição: o sistema antigo já vale 80%.',
+      2031: 'Transição: o sistema antigo já vale 70%.',
+      2032: 'Último ano de transição: o sistema antigo vale 60%.',
+      2033: 'Sistema pleno: ISS e ICMS extintos. Sobram IBS e CBS, mais IRPJ e CSLL, que a reforma não mudou.',
+    };
+
+    const num = n => (isFinite(n) && n > 0 ? n : 0);
+
+    /* ------------------------------------------------------------------
+       A carga completa de um ano.
+         receita          faturamento do período (medições, contrato faturado)
+         ano              2026 em diante
+         issAliquota      0,02 a 0,05 conforme o município
+         comMaterial      empreitada com material (base 8%) ou só mão de obra (32%)
+         mesesPeriodo     para ratear o limite anual do adicional de IRPJ
+         materialComprado base do crédito de IVA e do ICMS embutido na compra
+       ------------------------------------------------------------------ */
+    function cargaNoAno(opcoes) {
+      const receita = num(opcoes.receita);
+      const ano = opcoes.ano || new Date().getFullYear();
+      const iss = opcoes.issAliquota != null ? opcoes.issAliquota : 0.05;
+      const comMaterial = opcoes.comMaterial !== false;
+      const meses = opcoes.mesesPeriodo || 12;
+      const material = num(opcoes.materialComprado);
+      const p = pesosDoAno(ano);
+      const chave = comMaterial ? 'comMaterial' : 'soMaoDeObra';
+
+      const itens = [];
+
+      /* --- Sobre o lucro: a reforma NÃO mexe nestes dois. --- */
+      const baseIR = receita * PRESUMIDO.baseIRPJ[chave];
+      const limite = PRESUMIDO.limiteAdicionalAno * (meses / 12);
+      itens.push({
+        sigla: 'IRPJ', esfera: 'federal', grupo: 'lucro',
+        valor: baseIR * PRESUMIDO.aliqIRPJ + Math.max(0, baseIR - limite) * PRESUMIDO.adicionalIRPJ,
+        detalhe: 'base presumida de ' + Math.round(PRESUMIDO.baseIRPJ[chave] * 100) + '%, alíquota de 15% mais adicional de 10%',
+      });
+      itens.push({
+        sigla: 'CSLL', esfera: 'federal', grupo: 'lucro',
+        valor: receita * PRESUMIDO.baseCSLL[chave] * PRESUMIDO.aliqCSLL,
+        detalhe: 'base presumida de ' + Math.round(PRESUMIDO.baseCSLL[chave] * 100) + '%, alíquota de 9%',
+      });
+
+      /* --- Sobre o consumo: é aqui que a reforma age. --- */
+      if (p.pisCofins) {
+        itens.push({ sigla: 'PIS', esfera: 'federal', grupo: 'consumo',
+          valor: receita * PRESUMIDO.aliqPIS, detalhe: '0,65% sobre a receita (cumulativo)' });
+        itens.push({ sigla: 'COFINS', esfera: 'federal', grupo: 'consumo',
+          valor: receita * PRESUMIDO.aliqCOFINS, detalhe: '3% sobre a receita (cumulativo)' });
+      }
+
+      if (p.cbsValendo) {
+        const aliq = REFORMA.refCBS * (1 - REFORMA.reducaoImoveis);
+        itens.push({ sigla: 'CBS', esfera: 'federal', grupo: 'consumo', novo: true,
+          valor: receita * aliq,
+          detalhe: 'substitui PIS e COFINS · ' + pctTexto(aliq) + ' já com a redução de 50% de bens imóveis' });
+      } else if (p.teste) {
+        itens.push({ sigla: 'CBS', esfera: 'federal', grupo: 'consumo', novo: true, simbolico: true,
+          valor: 0, detalhe: 'alíquota-teste de 0,9% destacada na nota, sem recolhimento em 2026' });
+      }
+
+      if (p.antigo > 0) {
+        itens.push({ sigla: 'ISS', esfera: 'municipal', grupo: 'consumo',
+          valor: receita * iss * p.antigo,
+          detalhe: pctTexto(iss) + ' do município' + (p.antigo < 1 ? ', já reduzido a ' + Math.round(p.antigo * 100) + '% pela transição' : '') });
+      }
+
+      if (p.ibs > 0) {
+        const aliq = REFORMA.refIBS * (1 - REFORMA.reducaoImoveis) * p.ibs;
+        itens.push({ sigla: 'IBS', esfera: 'estadual e municipal', grupo: 'consumo', novo: true,
+          valor: receita * aliq,
+          detalhe: 'substitui ICMS e ISS · ' + pctTexto(aliq) + ' neste ano da transição' });
+      } else if (p.ibsSimbolico) {
+        itens.push({ sigla: 'IBS', esfera: 'estadual e municipal', grupo: 'consumo', novo: true, simbolico: true,
+          valor: receita * 0.001 * (1 - REFORMA.reducaoImoveis),
+          detalhe: 'ainda simbólico: 0,1% de referência, com a redução de bens imóveis' });
+      } else if (p.teste) {
+        itens.push({ sigla: 'IBS', esfera: 'estadual e municipal', grupo: 'consumo', novo: true, simbolico: true,
+          valor: 0, detalhe: 'alíquota-teste de 0,1% destacada na nota, sem recolhimento em 2026' });
+      }
+
+      const soma = f => itens.filter(f).reduce((s, i) => s + i.valor, 0);
+      const total = soma(() => true);
+
+      return {
+        ano, receita, itens,
+        federais: soma(i => i.esfera === 'federal'),
+        municipais: soma(i => i.esfera === 'municipal'),
+        compartilhados: soma(i => i.esfera === 'estadual e municipal'),
+        sobreLucro: soma(i => i.grupo === 'lucro'),
+        sobreConsumo: soma(i => i.grupo === 'consumo'),
+        total,
+        percentual: receita > 0 ? total / receita : 0,
+        nota: NOTA_ANO[ano] || NOTA_ANO[2033],
+        vigente: ano <= 2026,
+        /* O ICMS não é recolhido pela construtora — ela não é contribuinte de
+           ICMS, presta serviço sujeito a ISS. Mas o imposto veio dentro do preço
+           do material e some no orçamento sem nunca aparecer como tributo. */
+        icmsNoMaterial: material * 0.18,
+        material,
+        /* O IVA é não cumulativo: o que for pago de CBS/IBS na compra de
+           material volta como crédito. É a diferença estrutural que uma
+           comparação de alíquotas esconde. */
+        creditoIVA: p.cbsValendo ? material * (REFORMA.refCBS + REFORMA.refIBS * p.ibs) : 0,
+      };
+    }
+
+    function pctTexto(x) {
+      const v = x * 100;
+      return v.toFixed(v < 10 ? 2 : 1).replace('.', ',').replace(/,?0+$/, '').replace(/,$/, '') + '%';
+    }
+
+    const AVISO =
+      'Estimativa educativa sobre o faturamento informado, no regime de Lucro ' +
+      'Presumido e com a redução de 50% prevista para bens imóveis. A alíquota de ' +
+      'ISS muda de município para município, o enquadramento muda de empresa para ' +
+      'empresa, e a reforma segue em transição até 2033. Não substitui o cálculo ' +
+      'do seu contador.';
+
+    const ANOS = [2026, 2027, 2029, 2033];
+
+    return { cargaNoAno, pctTexto, AVISO, ANOS, PRESUMIDO, REFORMA };
+  })();
+
+
+  /* Desenha o peso dos tributos sobre o valor da obra. Roda junto do resultado,
+     e só quando há dinheiro informado — sem valor de obra não há o que calcular. */
+  function mostrarTributos(bac) {
+    var host = $('bloco-tributos');
+    if (!host) return;
+    if (!isFinite(bac) || bac <= 0) { host.hidden = true; return; }
+    host.hidden = false;
+
+    var anos = Tributos.ANOS.map(function (ano) {
+      return Tributos.cargaNoAno({ receita: bac, ano: ano, issAliquota: 0.05, comMaterial: true });
+    });
+    var hoje = anos[0];
+    var maior = Math.max.apply(null, anos.map(function (c) { return c.total; })) || 1;
+
+    var linhas = hoje.itens.filter(function (i) { return i.valor > 0; }).map(function (i) {
+      return '<tr><th scope="row">' + i.sigla + ' <span class="trib-esfera-c">' + i.esfera + '</span></th>' +
+             '<td>' + moeda.format(i.valor) + '</td></tr>';
+    }).join('');
+
+    var barras = anos.map(function (c) {
+      return '<div class="trib-linha' + (c.vigente ? '' : ' futuro') + '">' +
+        '<span class="trib-ano">' + c.ano + (c.vigente ? ' (hoje)' : '') + '</span>' +
+        '<span class="trib-trilho"><i style="width:' + Math.max(3, c.total / maior * 100) + '%"></i></span>' +
+        '<span class="trib-valor">' + moeda.format(c.total) + '</span></div>';
+    }).join('');
+
+    $('trib-corpo').innerHTML =
+      '<p class="trib-frase">Dos <b>' + moeda.format(bac) + '</b> combinados para esta obra, ' +
+      'cerca de <b>' + moeda.format(hoje.total) + '</b> são tributos — ' +
+      (hoje.percentual * 100).toFixed(1).replace('.', ',') + '% do valor.</p>' +
+      '<table class="trib-tabela"><tbody>' + linhas + '</tbody></table>' +
+      '<h3 class="trib-sub">O que muda com a reforma tributária</h3>' +
+      '<div class="trib-barras">' + barras + '</div>' +
+      '<p class="trib-nota-c">' +
+        '<b>2027</b> é quando começa a valer: a CBS substitui PIS e COFINS. O IBS entra no ' +
+        'lugar de ISS e ICMS aos poucos, entre 2029 e 2033. Os números de 2027 em diante são ' +
+        '<b>projeção</b> pelas alíquotas de referência da LC 214/2025, já com a redução de 50% ' +
+        'prevista para obras e imóveis — nenhum deles está sendo cobrado hoje.' +
+      '</p>' +
+      '<p class="trib-aviso-c">Quem recolhe esses tributos é a empresa que executa a obra, não você — ' +
+      'mas eles estão dentro do preço que você paga. ' + Tributos.AVISO + '</p>';
+  }
 
   /* Instalação como aplicativo e funcionamento sem sinal — útil no canteiro. */
   if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
